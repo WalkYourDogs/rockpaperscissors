@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<script>
+
+game = () => {
+let playerScore="0";
+let computerScore="0";
+
+playRound = () => {
+    var playerChoice = prompt('rock, paper, or scissors?', "rock");
+    let playerSelection = playerChoice.toLowerCase();
+
+    var computerChoice = Math.floor(Math.random()*3 + 1);
+    if (computerChoice == '1') {var computerSelection = 'rock'}
+    else if (computerChoice == '2') {var computerSelection = 'paper'}
+    else {var computerSelection = 'scissors'};
+
+    if (playerSelection == 'rock' && computerSelection == 'paper') {playerRoundLoss()}
+    else if (playerSelection == 'paper' && computerSelection == 'scissors') {playerRoundLoss()}
+    else if (playerSelection == 'scissors' && computerSelection == 'rock') {playerRoundLoss()}
+    else if (playerSelection == 'rock' && computerSelection == 'scissors') {playerRoundWin()}
+    else if (playerSelection == 'paper' && computerSelection == 'rock') {playerRoundWin()}
+    else if (playerSelection == 'scissors' && computerSelection == 'paper') {playerRoundWin()}
+    else {tieRound()}
+
+    function playerRoundLoss() {console.log(computerScore++, 'Player loses this round.')}
+    if (computerScore == '3') {computerGameWin()}
+    else {playRound()}
+
+    function playerRoundWin() {console.log(playerScore++, 'Player wins this round.')}
+    if (playerScore == '3') {playerGameWin()}
+    else {playRound()}
+
+    function tieRound() {console.log('Tie round.', playRound())}
+    }
+    playRound();
+    }
+
+computerGameWin = () => {console.log('The computer wins the game! The final score is ' + computerScore + 'to ' + playerScore)}
+playerGameWin = () => {console.log('The player wins the game! The final score is ' + playerScore + 'to ' + computerScore)}
+
+game();
+
+</script>
